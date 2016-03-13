@@ -16,12 +16,12 @@ while [ $COUNTER -gt 0 ]; do
    echo ${RAWDATA} >&2
  
    # parse the response code 0 - success; 
-   RESPONSECODE=$(echo  ${RAWDATA} |  sed -e 's/^\(.*\),\(.*\),\(.*\),\(.*\),\(.*\)$/\1/g' | bc)
+   RESPONSECODE=$(echo  ${RAWDATA} |  sed -e 's/^\(.*\),\(.*\),\(.*\)$/\1/g' | bc)
    DISPLAY_RESULT=""
 
    case ${RESPONSECODE} in
       0)
-         DISTANCE=$(echo  ${RAWDATA} |  sed -e 's/^\(.*\),\(.*\),\(.*\),\(.*\),\(.*\)$/\5/g')
+         DISTANCE=$(echo  ${RAWDATA} |  sed -e 's/^\(.*\),\(.*\),\(.*\)$/\3/g')
          DISTANCE_FLOAT=$(echo "scale=2; $DISTANCE/100" | bc)
          DISPLAY_RESULT="Status: Success ${DISTANCE_FLOAT} cm."
          ;;

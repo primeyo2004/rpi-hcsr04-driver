@@ -183,6 +183,7 @@ static ssize_t device_read(struct file *filp,	/* see include/linux/fs.h   */
 
    if ( result_code  == RRESULT_NOT_STARTED ){
       retval  =0;
+      printk (KERN_WARNING "%s: Device has not been started!\n",DEVICE_NAME);
       goto exit_func;
    }
 
@@ -191,15 +192,12 @@ static ssize_t device_read(struct file *filp,	/* see include/linux/fs.h   */
       goto exit_func;
    }
 
-   sprintf(data_buffer,"%d,%ld:%ld,%ld:%ld,%ld:%ld,%ld\n",
-         (int)result_code,
-         start_time.tv_sec,
-         start_time.tv_nsec,
-         end_time.tv_sec,
-         end_time.tv_nsec,
-         delta_time.tv_sec,
+   sprintf(data_buffer,"%d,%ld:%ld,%ld\n",
+         (int)result_code, /* result code */
+         delta_time.tv_sec, /* duration incident + reflected sound */
          delta_time.tv_nsec,
-         (delta_time.tv_nsec*100) / 58140);
+         (delta_time.tv_nsec*100) / 58140 /* calculated distance in cm * 100 */
+         );
 
    printk(KERN_INFO "%s:%s\n",DEVICE_NAME,data_buffer);
 

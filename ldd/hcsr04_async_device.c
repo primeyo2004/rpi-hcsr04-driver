@@ -17,21 +17,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  * */
 
-#include <linux/init.h>
-#include <linux/module.h>
-#include <linux/device.h>
 #include <asm/irq.h>
-#include <asm/uaccess.h>
 #include <linux/err.h>
-#include <linux/fs.h>
-#include <linux/cdev.h>
-#include <linux/interrupt.h>
 #include <linux/gpio.h>
 #include <linux/time.h>
+#include <linux/interrupt.h>
 #include <linux/workqueue.h>
 #include <linux/timer.h>
 #include <linux/spinlock.h>
 #include <linux/slab.h>
+#include <linux/semaphore.h>
 #include "hcsr04_async_device.h"
 
 #define INVALID_GPIO_NUM 0xFFFFFFFF
