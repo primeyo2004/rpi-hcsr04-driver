@@ -46,6 +46,17 @@ static unsigned int  param_echo_gpio    = 18;
 static unsigned int  param_usec_pulse_width = 10;  /* 10 ms */
 static unsigned int  param_usec_timeout = 300000;  /* 300 ms */
 
+module_param(param_trigger_gpio,uint,S_IRUSR|S_IRGRP);
+module_param(param_echo_gpio,uint,S_IRUSR|S_IRGRP);
+module_param(param_usec_pulse_width,uint,S_IRUSR|S_IRGRP);
+module_param(param_usec_timeout,uint,S_IRUSR|S_IRGRP);
+MODULE_PARM_DESC(param_trigger_gpio,"The GPIO pin for hc-sr04 trigger");
+MODULE_PARM_DESC(param_echo_gpio,"The GPIO pin for hc-sr04 echo");
+MODULE_PARM_DESC(param_usec_pulse_width,"The pulse width duration for the hc-sr04 trigger");
+MODULE_PARM_DESC(param_usec_timeout,"The timeout setting for non responding hc-sr04 echo signal");
+
+
+
 static dev_t dev_num = 0;
 struct cdev *mcdev = NULL;
 extern char DEVICE_NAME[];
